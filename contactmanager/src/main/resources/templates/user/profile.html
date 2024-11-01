@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link th:href="@{/css/base.css}" rel="stylesheet" />
+    <link th:href="@{/css/profile.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body th:replace="~{user/base :: layout(~{::div})}">
+    <div class="user-profile">
+        <div th:if="${msg}" th:class="${msg.type}">
+            <p th:text="${msg.message}"></p>
+        </div>
+        <div class="profile">
+            <div class="up">
+                <a href="#">
+                    <i class="fa-solid fa-arrow-left" id="back-btn"></i>
+                </a>
+
+                <div class="profile-pic">
+                    <img th:if="${user.profile==null}" th:src="@{'/images/default.png'}" alt="Imgage">
+
+                    <img th:if="${user.profile!=null}" th:src="@{'/profileImages/' + ${user.profile}}" alt="Image">
+                </div>
+                <form th:action="@{/user/update-profile/{userId}(userId=${user.id})}" method="post"
+                    enctype="multipart/form-data">
+                    <input type="file" name="profileImage">
+                    <button type="submit">Update Profile</button>
+                </form>
+
+            </div>
+
+            <div class="down">
+                <div class="details">
+                    <h2>ID</h2>
+                    <div>
+                        <p th:text="SCM2024+${user.id}"></p>
+                    </div>
+                </div>
+
+                <div class="details">
+                    <h2>NAME</h2>
+                    <div>
+                        <p th:text="${user.name}"></p>
+                    </div>
+                </div>
+                <div class="details">
+                    <h2>EMAIL</h2>
+                    <div>
+                        <p th:text="${user.email}"></p>
+                    </div>
+                </div>
+                <div class="details">
+                    <h2>NUMBER</h2>
+                    <div>
+                        <p th:text="${user.number}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

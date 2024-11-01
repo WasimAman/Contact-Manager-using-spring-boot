@@ -1,0 +1,135 @@
+.show-contacts {
+    width: 78%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    color: white;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    min-width: 600px; /* Prevent collapsing on smaller screens */
+    border-collapse: collapse;
+}
+
+thead {
+    background: #5f8566;
+}
+
+td, th {
+    border: 1px solid white;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
+td:hover, th:hover {
+    background: #5f8566;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #5f8566;
+}
+.pagination .active{
+    background: #2d4131;
+}
+.pagination a{
+    text-decoration: none;
+    padding: 10px 20px;
+    color: white;
+    margin: 0;
+    border-right: 1px solid white;
+    transition: all .3s ease;
+}
+
+.pagination a:hover {
+    background: #79A481;
+}
+
+#next-pagination {
+    border-right: none;
+}
+
+.action-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.action-btn a {
+    font-size: 1.2rem;
+}
+
+.action-btn a:first-child {
+    color: rgb(179, 22, 22);
+}
+
+.action-btn a:last-child {
+    color: rgb(51, 116, 255);
+}
+
+.action-btn a:first-child:hover {
+    color: rgb(124, 34, 34);
+}
+
+.action-btn a:last-child:hover {
+    color: rgb(10, 57, 159);
+}
+
+.name-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.name-profile div {
+    display: flex; /* Show the circle with the initial */
+    width: 3em;
+    height: 3rem;
+    border-radius: 50%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+}
+.name-profile div img{
+    width: 100%;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.show-contacts a{
+    text-decoration: none;
+    color: white;
+    z-index: 10000;
+}
+
+
+.no-contacts-msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    color: #fff;
+}
+
+.no-contacts-msg a{
+    background-color: #3a583f;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.3rem;
+}

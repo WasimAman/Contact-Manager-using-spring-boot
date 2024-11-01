@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link th:href="@{/css/base.css}" rel="stylesheet" />
+    <link th:href="@{/css/user-profile.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body th:replace="~{user/base :: layout(~{::div})}">
+    <div class="user-profile">
+        <div class="profile">
+            <div class="left">
+                <a th:href="@{/user/show-contacts/{page}(page=${page})}">
+                    <i class="fa-solid fa-arrow-left" id="back-btn"></i>
+                </a>
+
+                <div class="profile-pic">
+                    <img th:src="@{'/profileImages/' + ${contact.profileImg}}" alt="Img">
+                </div>
+                <p th:text="${contact.about}"></p>
+            </div>
+
+            <div class="right">
+                <div class="details">
+                    <h2>ID</h2>
+                    <div>
+                        <p th:text="SCM2024+${contact.id}"></p>
+                    </div>
+                </div>
+
+                <div class="details">
+                    <h2>NAME</h2>
+                    <div>
+                        <p th:text="${contact.name}"></p>
+                    </div>
+                </div>
+                <div class="details">
+                    <h2>NICKNAME</h2>
+                    <div>
+                        <p th:text="${contact.nickname}"></p>
+                    </div>
+                </div>
+                <div class="details">
+                    <h2>EMAIL</h2>
+                    <div>
+                        <p th:text="${contact.email}"></p>
+                    </div>
+                </div>
+                <div class="details">
+                    <h2>NUMBER</h2>
+                    <div>
+                        <p th:text="${contact.number}"></p>
+                    </div>
+                </div>
+
+                <div class="details">
+                    <h2>WORK</h2>
+                    <div>
+                        <p th:text="${contact.work}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

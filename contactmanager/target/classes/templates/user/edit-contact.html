@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Contact</title>
+    <link th:href="@{/css/base.css}" rel="stylesheet" />
+    <link th:href="@{/css/add-contacts.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body th:replace="~{user/base :: layout(~{::div})}">
+    <div class="add-contacts">
+        <form th:action="@{|/user/edit-contact/${contact.id}/${page}|}" th:object="${contact}" method="post"
+            enctype="multipart/form-data">
+            <h2>Edit Contact</h2>
+            <div th:if="${msg}" th:class="${msg.type}">
+                <p th:text="${msg.message}"></p>
+            </div>
+            <div class="input-field">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter name" th:field="*{name}" required>
+            </div>
+
+            <div class="input-field">
+                <label for="nickname">Nickname</label>
+                <input type="text" id="nickname" placeholder="Enter nickname" th:field="*{nickname}" required>
+            </div>
+
+            <div class="input-field">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter email" th:field="*{email}" required>
+            </div>
+
+            <div class="input-field">
+                <label for="number">Number</label>
+                <input type="text" id="number" placeholder="Enter number" th:field="*{number}" required>
+            </div>
+
+            <div class="input-field">
+                <label for="work">Work</label>
+                <input type="text" id="work" placeholder="Enter work" th:field="*{work}" required>
+            </div>
+
+            <div class="input-field text-area">
+                <label for="about">About</label>
+                <textarea name="about" id="about" th:field="*{about}"
+                    placeholder="Write something about this person (max 100 words)" maxlength="100" required></textarea>
+            </div>
+
+            <div class="profile-img">
+                <label for="profile-img">Profile Image</label>
+                <input type="file" name="profile-img" id="profile-img">
+            </div>
+
+            <div class="add-btn">
+                <button type="submit">Edit Contact</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Contact Manager</title>
+    <link th:href="@{/css/navbar.css}" rel="stylesheet" />
+    <link th:href="@{/css/signup.css}" rel="stylesheet" />
+</head>
+<body>
+    <section class="main-container">
+        <nav class="nav-bar" th:fragment="navbar">
+            <div class="logo">
+                <div class="logo-img">
+                    <img th:src="@{/images/logo.jpg}" alt="Contact Manager Logo">
+                </div>
+                <h1>Contact Manager</h1>
+            </div>
+        
+            <ul class="nav-links">
+                <li><a th:href="@{/}">HOME</a></li>
+                <li><a th:href="@{/signup}">SIGNUP</a></li>
+            </ul>
+        </nav>
+        <div class="hero-section">
+            <form th:action="@{/authenticate}" method="post">
+                <h2>LOGIN HERE</h2>
+                <div th:if="${msg}" th:class="${msg.type}">
+                    <p th:text="${msg.message}"></p>
+                </div>
+                <div class="input-field">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" placeholder="Enter Username" required>
+                </div>
+                <div class="input-field">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter Password" required>
+                </div>
+
+                <div class="register-btn">
+                    <button type="submit">LOGIN</button>
+                    <p>Don't have an account? <a th:href="@{/signup}">SIGNUP</a></p>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

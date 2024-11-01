@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link th:href="@{/css/base.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body th:fragment="layout(content)">
+    <div class="container">
+        <nav class="nav-bar">
+            <div class="logo">
+                <div class="logo-img">
+                    <img th:src="@{/images/logo.jpg}" alt="">
+                </div>
+                <h1>Contact Manager</h1>
+            </div>
+
+            <ul class="nav-links">
+                <li id="profile"><a href="user-profile" th:text="${user.name.charAt(0)}"></a></li>
+                <li><a href="/user/dashboard">HOME</a></li>
+                <li><a href="/logout">LOGOUT</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-section">
+            <ul class="side-bar">
+                <h2>Features</h2>
+                <li id="first">
+                    <a href="/user/dashboard"><i class="fa-solid fa-house"></i>Home</a>
+                </li>
+                <li>
+                    <a href="/user/add-contacts"><i class="fa-solid fa-pen"></i>Add Contact</a>
+                </li>
+                <li>
+                    <a href="/user/show-contacts/0"><i class="fa-solid fa-address-card"></i>View Contacts</a>
+                </li>
+                <li>
+                    <a href="/user/profile"><i class="fa-solid fa-circle-user"></i>Profile</a>
+                </li>
+                <li>
+                    <a href="/user/settings"><i class="fa-solid fa-gear"></i>Settings</a>
+                </li>
+                <li id="last">
+                    <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                </li>
+            </ul>
+
+            <!-- This is where the content from other templates will be injected -->
+            <div th:replace="${content}"></div>
+        </div>
+    </div>
+</body>
+
+</html>

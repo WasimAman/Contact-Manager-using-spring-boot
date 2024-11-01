@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link th:href="@{/css/base.css}" rel="stylesheet" />
+    <link th:href="@{/css/show-contacts.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body th:replace="~{user/base :: layout(~{::div})}">
+    <div class="show-contacts">
+        <table th:if="${contacts.getNumberOfElements()!=0}">
+            <thead>
+                <tr class="table-headers">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Nickname</th>
+                    <th>Email</th>
+                    <th>Work</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="contact : ${contacts}">
+                    <td>
+                        <a th:href="@{|/user/user-profile/${contact.id}/${currentPage}|}"
+                            th:text="'SCM2024' + ${contact.id}"></a>
+                    </td>
+                    <td>
+                        <a th:href="@{|/user/user-profile/${contact.id}/${currentPage}|}">
+                            <div class="name-profile">
+                                <div>
+                                    <img th:src="@{'/profileImages/' + ${contact.profileImg}}"
+                                        alt="Profile Image of [[${contact.name}]]">
+                                </div>
+                                <p th:text="${contact.name}"></p>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{|/user/user-profile/${contact.id}/${currentPage}|}"
+                            th:text="${contact.nickname}"></a>
+                    </td>
+                    <td>
+                        <a th:href="@{|/user/user-profile/${contact.id}/${currentPage}|}"
+                            th:text="${contact.email}"></a>
+                    </td>
+                    <td>
+                        <a th:href="@{|/user/user-profile/${contact.id}/${currentPage}|}" th:text="${contact.work}"></a>
+                    </td>
+                    <td>
+                        <div class="action-btn">
+                            <a th:href="@{|/user/delete/${contact.id}/${currentPage}|}" aria-label="Delete"><i
+                                    class="fa-solid fa-trash"></i></a>
+                            <a th:href="@{|/user/edit/${contact.id}/${currentPage}|}" aria-label="Edit"><i
+                                    class="fa-solid fa-pen-to-square"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="no-contacts-msg">
+            <h2>There is no contact first add Some contacts</h2>
+            <a th:href="@{'/user/add-contacts'}">Add contacts</a>
+        </div>
+
+        <div class="pagination" th:if="${contacts.getNumberOfElements()!=0}">
+            <a th:href="@{'/user/show-contacts/' + ${currentPage - 1}}" th:if="${currentPage > 1}">PREV</a>
+
+            <a th:href="@{'/user/show-contacts/' + ${pageNo}}" th:classappend="${currentPage == pageNo ? 'active' : ''}"
+                th:each="pageNo : ${#numbers.sequence(1, totalPage)}" th:text="${pageNo}">
+            </a>
+
+            <a th:href="@{'/user/show-contacts/' + ${currentPage + 1}}" th:if="${currentPage < totalPage}">NEXT</a>
+        </div>
+    </div>
+</body>
+
+</html>

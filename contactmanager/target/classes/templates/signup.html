@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Manager - Sign Up</title>
+    <link th:href="@{/css/navbar.css}" rel="stylesheet" />
+    <link th:href="@{/css/signup.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <section class="main-container">
+        <nav class="nav-bar" th:fragment="navbar">
+            <div class="logo">
+                <div class="logo-img">
+                    <img th:src="@{/images/logo.jpg}" alt="Contact Manager Logo">
+                </div>
+                <h1>Contact Manager</h1>
+            </div>
+
+            <ul class="nav-links">
+                <li><a th:href="@{/}">HOME</a></li>
+                <li><a th:href="@{/login}">LOGIN</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-section">
+            <form th:action="@{/register}" th:object="${user}" method="post">
+                <h2>Register Here</h2>
+                <div th:if="${msg}" th:class="${msg.type}">
+                    <p th:text="${msg.message}"></p>
+                </div>
+
+                <div class="input-field">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" th:field="*{name}" placeholder="Enter Name">
+                    <div th:if="${#fields.hasErrors('name')}" class="validation-error">
+                        <p th:each="error : ${#fields.errors('name')}" th:text="${error}"></p>
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" th:field="*{email}" placeholder="Enter Email">
+                    <div th:if="${#fields.hasErrors('email')}" class="validation-error">
+                        <p th:each="error : ${#fields.errors('email')}" th:text="${error}"></p>
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" th:field="*{password}" placeholder="Enter Password">
+                    <div th:if="${#fields.hasErrors('password')}" class="validation-error">
+                        <p th:each="error : ${#fields.errors('password')}" th:text="${error}"></p>
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <label for="number">Number</label>
+                    <input type="text" id="number" th:field="*{number}" placeholder="Enter Number">
+                    <div th:if="${#fields.hasErrors('number')}" class="validation-error">
+                        <p th:each="error : ${#fields.errors('number')}" th:text="${error}"></p>
+                    </div>
+                </div>
+
+                <div class="agreement">
+                    <div>
+                        <input type="checkbox" id="checkbox" th:field="*{agreed}">
+                        <label for="checkbox">Accept terms and conditions</label>
+                    </div>
+                    <div th:if="${#fields.hasErrors('agreed')}" class="validation-error">
+                        <p th:each="error : ${#fields.errors('agreed')}" th:text="${error}"></p>
+                    </div>
+                </div>
+
+                <div class="register-btn">
+                    <button type="submit">REGISTER</button>
+                    <p>Already have an account? <a th:href="@{/login}">LOGIN</a></p>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>
